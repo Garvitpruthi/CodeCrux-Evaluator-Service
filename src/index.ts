@@ -21,5 +21,10 @@ app.listen(serverConfig.PORT, ()=>{
         name: "Garvit",
         company: "Google",
         position: "SDE"
-    });
+    }, 2);
+    sampleQueueProducer("SampleJob", {
+        name: "Garv",
+        company: "microsoft",
+        position: "SWE"
+    }, 1);
 });

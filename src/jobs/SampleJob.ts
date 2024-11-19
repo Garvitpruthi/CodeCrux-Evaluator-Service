@@ -1,5 +1,6 @@
 import { Job } from "bullmq";
 
+import {logger} from "../config/loggerConfig";
 import { IJob } from "../types/bullMqJobDefinition";
 
 export default class SampleJob implements IJob {
@@ -12,21 +13,22 @@ export default class SampleJob implements IJob {
     }
 
     handle = (job?:Job)=>{
-        console.log("Handler of the job called");
-        console.log("Job Payload:", this.payload);
-
+       
+        logger.info(`Handler of the job called`);
+        logger.info(`Job payload: ${this.payload}`);
+       
         if (job) {
-            console.log(`Job Name: ${job.name}, Job ID: ${job.id}, Job Data:`, job.data);
+            logger.info(`Job Name: ${job.name}, Job ID: ${job.id}, Job Data: ${job.data}`);
         }
 
         // Simulate job processing (replace with actual logic)
-        console.log("Processing job...");
+        logger.info("Processing job...");
 
     };
     failed = (job?:Job):void=>{
-        console.log("job failed");
+        logger.info("job failed");
         if(job) {
-            console.log(job.id); 
+            logger.info(`${job.id}`); 
         }
     }
 };
