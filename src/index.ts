@@ -4,12 +4,14 @@ import serverConfig from "./config/serverConfig";
 import sampleQueueProducer from "./producers/sampleQueueProducer";
 // import sampleQueue from "./queues/sampleQueue";
 import apiRouter from "./routes";
+import bullBoardRouter from "./routes/bullBoard";
 import SampleWorker from "./workers/SampleWorker";
 
 
 const app: Express = express();
 
 app.use('/api', apiRouter);
+app.use('/admin/queues', bullBoardRouter);
 
 app.listen(serverConfig.PORT, ()=>{
     console.log(`server stated at *: ${serverConfig.PORT}`);
